@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ScheduleAssistant">
+        <activity
+            android:name=".ui.event.EventEditActivity"
+            android:exported="false"
+            android:label="新建日程" />
+        <activity
+            android:name=".ui.habit.HabitEditActivity"
+            android:exported="false"
+            android:label="新建习惯" />
+        <activity
+            android:name=".ui.habit.HabitListActivity"
+            android:exported="false"
+            android:label="习惯列表" />
+        <activity
+            android:name=".ui.smart.SmartPlanActivity"
+            android:exported="false"
+            android:label="智能规划" />
+        <activity
+            android:name=".ui.event.EventDetailActivity"
+            android:exported="false"
+            android:label="日程详情" />
+        <activity
+            android:name=".ui.event.EventSearchActivity"
+            android:exported="false"
+            android:label="搜索日程" />
+        <activity
+            android:name=".ui.week.WeekActivity"
+            android:exported="false"
+            android:label="周视图" />
+        <activity
+            android:name=".ui.event.EventListActivity"
+            android:exported="false"
+            android:label="日程列表" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".reminder.ReminderActionReceiver" android:exported="false"/>
+        <receiver android:name=".reminder.AlarmReminderReceiver" android:exported="false"/>
+        <receiver android:name=".widget.TodayWidgetProvider" android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_today_info"/>
+        </receiver>
+        <service android:name=".widget.TodayWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <receiver android:name=".widget.VoiceWidgetProvider" android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_voice_info"/>
+        </receiver>
+        <activity android:name=".ui.voice.VoiceQuickAddActivity" android:exported="false" />
+    </application>
+
+</manifest>
